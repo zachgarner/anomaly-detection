@@ -7,3 +7,15 @@ Twitter's original code is in R. Indeed's port is for Python 2. This fork suppor
 References:
  - https://github.com/indeedeng/anomaly-detection
  - https://github.com/twitter/AnomalyDetection
+
+To Install:
+- pip install py3c
+- python setup.py install
+- Also see Indeed's README
+
+
+Note that the function definition of detect_anoms is incorrect in Indeed's README.
+Use this:
+```
+   res = detect_anoms(x, 0.02)
+```
