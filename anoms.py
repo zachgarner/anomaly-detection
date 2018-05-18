@@ -127,7 +127,7 @@ def _detect_anomaly_for_one_window(x, period, max_anoms, alpha, direction, e_val
 def _post_processing_threshold(x, period, ret, threshold):
     # The threshold is calculated from the max values of each window.
     period_maxs = []
-    for i in xrange(0, len(x), period):
+    for i in range(0, len(x), period):
         period_maxs.append(max(x[i: min(len(x), i + period)]))
     thresh = 0
     if threshold == 'med_max':
