@@ -4,7 +4,7 @@
 #include"edm-per.h"
 #include"edmTail.h"
 #include"edmx.h"
-
+#include <py3c/compat.h>
 
 std::vector<double> to_vector(PyObject *pyList) {
     Py_ssize_t list_len = PyList_Size(pyList);
@@ -84,6 +84,15 @@ static PyMethodDef edmMethods[] = {
     {"edm_x",  EDM_x_wrapper, METH_VARARGS, "EDM X"},
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
-extern "C" void initedm(void) {
-    (void) Py_InitModule("edm", edmMethods);
+
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "edm",
+    NULL,
+    -1,
+    edmMethods,
+};
+
+PyMODINIT_FUNC PyInit_edm(void) {
+    (void) PyModule_Create(&moduledef);
 }

@@ -45,7 +45,7 @@ def detect_anoms(x, period, max_anoms=0.10, alpha=0.05, direction='both', longte
     e_values = None
     if e_value:
         e_values = [None] * len(x)  # To keep the expected values when e_value is set.
-    for window_start in xrange(0, len(x), longterm_period):
+    for window_start in range(0, len(x), longterm_period):
         # If the data is too long, split the data into smaller windows, and do the anomaly detection on each window.
         window_end = min(len(x), window_start + longterm_period)
         if logger.isEnabledFor(logging.DEBUG):
