@@ -51,7 +51,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_both.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_pos(self):
         """
@@ -62,7 +62,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_pos.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='pos', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_neg(self):
         """
@@ -73,7 +73,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_neg.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='neg', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_onlylast(self):
         """
@@ -84,7 +84,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_onlylast.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', only_last=1440, e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_threshold_med(self):
         """
@@ -95,7 +95,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_threshold_med.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', threshold='med_max', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_threshold_p95(self):
         """
@@ -106,7 +106,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_threshold_p95.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', threshold='p95', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_threshold_p99(self):
         """
@@ -117,7 +117,7 @@ class TestDetectAnoms(unittest.TestCase):
         expected_index, expected_e_values = _read_twitter_test_result('tests/expected_threshold_p99.txt')
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', threshold='p99', e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_longterm(self):
         """
@@ -129,7 +129,7 @@ class TestDetectAnoms(unittest.TestCase):
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', longterm_period=1440 * 7,
                                        e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_twitter_data_longterm_onlylast(self):
         """
@@ -141,7 +141,7 @@ class TestDetectAnoms(unittest.TestCase):
         index, e_values = detect_anoms(x, 1440, max_anoms=0.02, direction='both', longterm_period=1440 * 7,
                                        only_last=1440, e_value=True)
         self.assertListEqual(expected_index, index)
-        self.assertListEqual(expected_e_values, e_values)
+        self.assertListEqual(expected_e_values, list(e_values))
 
     def test_illegal_data_and_parameters(self):
         self.assertRaises(ValueError, detect_anoms, [1] * 1000, 14, max_anoms=0.5)
